@@ -4,7 +4,7 @@ A system that provides teachers with quick and convenient transactions, thus, re
 
 Accounts
 
-User ID: 743
+User ID: 743 \n
 Password: userpass
 User Type: Student
 
