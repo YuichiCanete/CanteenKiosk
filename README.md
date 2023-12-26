@@ -2,8 +2,9 @@
 
 A system that provides teachers with quick and convenient transactions, thus, reducing the need to carry cash. Create a system that provides canteen staff with a record of transactions, which can be helpful for tallying and tracking expenses 
 
-Accounts
+# Accounts
 
+</br>
 
 User ID: 743
 
@@ -11,6 +12,7 @@ Password: userpass
 
 User Type: Student
 
+</br>
 
 User ID: 744
 
@@ -18,6 +20,7 @@ Password: userpass
 
 User Type: Student
 
+</br>
 
 User ID: 745
 
@@ -25,6 +28,7 @@ Password: userpass
 
 User Type: Personnel
 
+</br>
 
 User ID: 746
 
@@ -32,6 +36,7 @@ Password: userpass
 
 User Type: Cashier
 
+</br>
 
 User ID: 747
 
