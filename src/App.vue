@@ -384,6 +384,7 @@ function removeFood(idx) {
 
           <tr>
             <th>User</th>
+            <th>Order Num</th>
             <th>Order</th>
             <th>Pay Type</th>
             <th>Total</th>
@@ -397,6 +398,10 @@ function removeFood(idx) {
 
             <td style="vertical-align: top;">
               <p>{{ order.User.userID }}</p>
+            </td>
+
+            <td style="vertical-align: top;">
+              {{ order.Ordernum }}
             </td>
 
             <td style="vertical-align: top;">
@@ -507,6 +512,7 @@ function removeFood(idx) {
 
         <tr>
           <th>User</th>
+          <th>Order Num</th>
           <th>Order</th>
           <th>Pay Type</th>
           <th>Total</th>
@@ -519,6 +525,10 @@ function removeFood(idx) {
 
           <td style="vertical-align: top;">
             <p>{{ order.User.userID }}</p>
+          </td>
+
+          <td style="vertical-align: top;">
+            {{ order.Ordernum }}
           </td>
 
           <td style="vertical-align: top;">
