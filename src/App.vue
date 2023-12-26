@@ -168,45 +168,50 @@ function decrementInventory(idx) {
 function addOrder(paytype) {
   const userCash = document.getElementById('userCash').value;
   if (paytype === 'tally' || (paytype === 'cash' && parseFloat(userCash) >= getTotal())) {
-    orderNum.value += 1;
-    let currentOrder = ref([]);
+    const proceed = confirm('Do you want to proceed with this order?');
+    if (proceed) {
+      orderNum.value += 1;
+      let currentOrder = ref([]);
 
-    // Create a copy of foodList with quantities reset to 0
-    let foodListCopy = JSON.parse(JSON.stringify(foodList.value));
-    let itemsToAddToOrder = [];
+      // Create a copy of foodList with quantities reset to 0
+      let foodListCopy = JSON.parse(JSON.stringify(foodList.value));
+      let itemsToAddToOrder = [];
 
-    for (let item of foodListCopy) {
-      if (item.Quantity > 0) {
-        item.Inventory -= item.Quantity
-        // Create a deep copy of the item to maintain original quantities
-        let newItem = { ...item };
-        itemsToAddToOrder.push(newItem);
-        // Reset quantity in foodList to 0
-        item.Quantity = 0;
+      for (let item of foodListCopy) {
+        if (item.Quantity > 0) {
+          item.Inventory -= item.Quantity
+          // Create a deep copy of the item to maintain original quantities
+          let newItem = { ...item };
+          itemsToAddToOrder.push(newItem);
+          // Reset quantity in foodList to 0
+          item.Quantity = 0;
+        }
       }
+
+      currentOrder.value = itemsToAddToOrder;
+      const currentDate = new Date();
+      const day = currentDate.getDate().toString().padStart(2, '0');
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+      const year = currentDate.getFullYear();
+      const formattedDate = `${day}/${month}/${year}`;
+
+      orderList.value.push({
+        User: currentUser.value,
+        Menu: JSON.parse(JSON.stringify(currentOrder.value)), // Create a deep copy of currentOrder.value
+        Total: getTotal(),
+        Paytype: paytype,
+        Ordernum: orderNum.value,
+        Cash: userCash,
+        CashBack: userCash - getTotal(),
+        Date: formattedDate,
+      });
+
+      setScreen('orderSuccess', 'Order Success');
+
+      foodList.value = foodListCopy; // Update foodList with quantities reset to 0
+    } else {
+      alert('Order has been Cancelled')
     }
-
-    currentOrder.value = itemsToAddToOrder;
-    const currentDate = new Date();
-    const day = currentDate.getDate().toString().padStart(2, '0');
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
-    const year = currentDate.getFullYear();
-    const formattedDate = `${day}/${month}/${year}`;
-
-    orderList.value.push({
-      User: currentUser.value,
-      Menu: JSON.parse(JSON.stringify(currentOrder.value)), // Create a deep copy of currentOrder.value
-      Total: getTotal(),
-      Paytype: paytype,
-      Ordernum: orderNum.value,
-      Cash: userCash,
-      CashBack: userCash - getTotal(),
-      Date: formattedDate,
-    });
-
-    setScreen('orderSuccess', 'Order Success');
-
-    foodList.value = foodListCopy; // Update foodList with quantities reset to 0
 
   } else {
     // Provide a message to the user that their cash input is insufficient
@@ -243,7 +248,13 @@ function clearForm() {
   document.getElementById('insertInventory').value = '';
 }
 
+function removeOrder(idx) {
+  orderList.value.splice(idx, 1);
+}
 
+function removeFood(idx) {
+  foodList.value.splice(idx, 1);
+}
 
 
 </script>
@@ -379,6 +390,7 @@ function clearForm() {
             <th>Cash</th>
             <th>Change</th>
             <th>Date</th>
+            <th>Process Order</th>
           </tr>
 
           <tr v-for="(order, index) in orderList" :key="index" style="background-color: white;">
@@ -413,6 +425,11 @@ function clearForm() {
               {{ order.Date }}
             </td>
 
+            <td style="vertical-align: top;">
+              <button class="roundBorder button pinkBackground" @click="removeOrder(index)">Confirm</button>
+              <button class="roundBorder button pinkBackground" @click="removeOrder(index)">Cancel</button>
+            </td>
+
           </tr>
 
         </table>
@@ -434,7 +451,7 @@ function clearForm() {
         <h2>Edit Menu (Inventory)</h2>
 
         <div class="wrapping scrolling" style="width: 100%; height: 95%;">
-          <div v-for="(item, index) in foodList" :key="index" class="orderFood roundBorder shadow">
+          <div v-for="(item, index) in foodList" :key="index" class="orderFood roundBorder shadow" style="height: 330px;">
             <!-- Food Image Here -->
             <img style="width: 125px; height: 125px; margin: 10px auto;" class="roundBorder" :src="item.imgUrl"
               :alt="item.Name">
@@ -444,6 +461,10 @@ function clearForm() {
               <button class="button roundBorder plusMinus shadow" @click="decrementInventory(index)"> - </button>
               <h2>{{ item.Inventory }}</h2>
               <button class="button roundBorder plusMinus shadow" @click="incrementInventory(index)"> + </button>
+            </div>
+            <div style="text-align: center;">
+              <button class="button roundBorder plusMinus shadow"
+                style="width: 125px; font-size: 15px; margin: 15px auto;" @click="removeFood(index)">Remove Item</button>
             </div>
           </div>
         </div>
@@ -744,15 +765,5 @@ export default {
   position: absolute;
   top: 93%;
   left: 1%;
-}
-
-.custom-table {
-  justify-content: space-between;
-  width: 100%;
-}
-
-.custom-row {
-  background-color: white;
-  margin-bottom: 15px;
 }
 </style>
