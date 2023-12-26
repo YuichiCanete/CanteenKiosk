@@ -6,11 +6,6 @@ const screen = ref('')
 const header = ref('')
 const orderNum = ref(0)
 const currentUser = ref({})
-const addImage = ref(document.getElementById('insertUrl'))
-
-addImage.onchange = function (event) {
-  addImage = ref(event.target.value)
-};
 
 function setScreen(newScreen, newHeader) {
   screen.value = ref(newScreen);
