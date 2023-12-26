@@ -11,7 +11,7 @@
   "dependencies": {
     "primeicons": "^6.0.1",
     "primereact": "^10.2.1",
-    "vue": "^3.3.11"
+    "vue": "^3.3.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
