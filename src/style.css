@@ -1,32 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #202020;
+    font-weight: bold;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  background-image: url('./assets/uic_bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
+    background-color: white;
 }
 
-Button {
-  border-radius: 30px;
-  margin: 5px;
+/* Custom Scroll Bar */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-img {
-  width: 100px;
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
 }
 
-.topbar {
-  background-color: white;
-  border-bottom: 3px solid #151515;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+::-webkit-scrollbar-thumb {
+    background: rgb(231, 158, 170);
+    border-radius: 5px;
 }
 
-.datatable {
-  border-radius: 15px;
-
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(209, 126, 140);
 }
