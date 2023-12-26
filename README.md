@@ -4,22 +4,37 @@ A system that provides teachers with quick and convenient transactions, thus, re
 
 Accounts
 
-User ID: 743 \n
+
+User ID: 743
+
 Password: userpass
+
 User Type: Student
+
 
 User ID: 744
+
 Password: userpass
+
 User Type: Student
 
+
 User ID: 745
+
 Password: userpass
+
 User Type: Personnel
 
+
 User ID: 746
+
 Password: userpass
+
 User Type: Cashier
 
+
 User ID: 747
+
 Password: userpass
+
 User Type: Finance
