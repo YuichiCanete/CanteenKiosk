@@ -1,8 +1,11 @@
 # How to download and run
 
 git clone https://github.com/YuichiCanete/CanteenKiosk.git
+
 cd CanteenKiosk
+
 npm install
+
 npm run dev
 
 
