@@ -1,5 +1,7 @@
 # How to download and run
 
+Open vsCode, then open terminal, then type:
+
 git clone https://github.com/YuichiCanete/CanteenKiosk.git
 
 cd CanteenKiosk
