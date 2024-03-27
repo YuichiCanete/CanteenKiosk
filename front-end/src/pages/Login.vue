@@ -5,6 +5,10 @@
         router.push(path)
     }  
 
+    function loginUser(){
+        switchTo('/createOrder')
+    }
+
 
 
 </script>
@@ -12,20 +16,15 @@
 <template>
 
     <Header title="Login Page"></Header>
-    <div class="container-fluid d-flex justify-content-center p-5">
-        <div class="bg-pink row col-3 p-3 text-center box-shadow">
-            <h3 class="text-white mb-3">Login</h3>
-            <input type="text" placeholder="User ID" class="custom-input mb-3" id="inputId">
-            <input type="password" placeholder="Password" class="custom-input mb-3" id="inputPassword">
-            <input type="button" value="Login" class="btn btn-light" id="buttonLogin" @click="switchTo('/pageB')">
-        </div>
+    
+    <div class="p-3">
+        <h3>Login Page</h3>
+        <input type="text" placeholder="User ID">
+        <input type="password" placeholder="Password">
+        <input type="button" value="Login" @click="loginUser()">
     </div>
     
-    
-    
-    
-
-
+        
 </template>
 
 <style scoped>

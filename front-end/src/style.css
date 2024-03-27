@@ -3,15 +3,14 @@
     padding: 0;
 }
 
-.bg-pink {
-    border-radius: 3px;
-    background-color: #F02E65;
+.color-base {
+    background-color: #555555;
 }
 
-.box-shadow {
-    box-shadow: 2px 3px 0 #aa1640;
+.color-dark {
+    background-color: #111111;
 }
 
-.text-shadow {
-    text-shadow: 2px 2px 3px rgba(0, 0, 0,.25);
+.color-light {
+    background-color: 	#999999;
 }

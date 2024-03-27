@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Login from "../pages/Login.vue"
-import PageB from "../pages/PageB.vue"
+import CreateOrder from "../pages/CreateOrder.vue"
 import PageC from "../pages/PageC.vue"
 
 const routes = []
@@ -15,7 +15,7 @@ function addRoute(path,name,component){
 }
 
 addRoute("/","Login",Login)
-addRoute("/pageB","Page B",PageB)
+addRoute("/createOrder","Create Order",CreateOrder)
 addRoute("/pageC","Page C",PageC)
 
 const router = createRouter({
