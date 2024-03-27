@@ -1,18 +1,26 @@
-How to Download and run
+# How to Download and run
 
-Cloning
+## Cloning
+
 ```
   git clone https://github.com/YuichiCanete/CanteenKiosk.git
 ```
 
-# Front End
+### Front End
 
 ```
   cd front-end
   npm run dev
 ```
 
-# Back End
+### Back End
 
+```
+  No Back end yet
+```
 
-# Test Dev
+### Test
+
+```
+  No test yet
+```
