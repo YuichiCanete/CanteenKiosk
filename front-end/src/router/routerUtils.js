@@ -1,5 +1,8 @@
 import { useRouter } from "vue-router";
-function switchTo(path) {
-    const router = useRouter()
-    router.push(path);
+
+export const pageChange = () => {
+    const switchTo = (path) => {
+        const router = useRouter()
+        router.push(path);
+    }
 }

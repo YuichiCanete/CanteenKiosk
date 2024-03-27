@@ -1,4 +1,5 @@
 <script setup>
+
     import {useRouter} from 'vue-router'
     const router = useRouter()
     function switchTo(path){
@@ -8,9 +9,7 @@
     function loginUser(){
         switchTo('/createOrder')
     }
-
-
-
+    
 </script>
 
 <template>

@@ -7,8 +7,6 @@
   }
   switchTo('/')
 
-  const items = [];
-
 </script>
 
 <script>

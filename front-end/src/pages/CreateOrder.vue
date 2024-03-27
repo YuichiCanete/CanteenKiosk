@@ -1,5 +1,15 @@
 <script setup>
     import FoodCard from '../components/FoodCard.vue'
+    import {useRouter} from 'vue-router'
+    const router = useRouter()
+    function switchTo(path){
+        router.push(path)
+    }
+
+    function addOrder(){
+        switchTo('/orderSuccess')
+    }
+
 </script>
 
 <template>
@@ -7,34 +17,60 @@
 
     <Header title="Create Order"></Header>
     
-    <table style="width: 100%;">
-        <tr>
-            <!-- Left -->
-            <td class="bg-danger food-list">
-                <div v-for="i in 10">
-                    <FoodCard/>
-                </div>
-            </td>
-            <!-- Right -->
-            <td class="bg-success order-list">
+    <div class="parent">
+        <div class="food-list p-2">
+            <h2>Menu Items</h2>
 
-            </td>
-        </tr>
-    </table>
+            <div class="food-grid justify-content-between">
+                <div v-for="i in 20">
+                    <FoodCard/>
+                </div>    
+            </div>
+
+        </div>
+        <div class="my-order p-2">
+            <h2>My Order</h2>
+            <div class="my-order-list">
+
+            </div>
+            <div class="my-payment text-center">
+                <h4>Payment</h4>
+                <p>Total Payment: 99999</p>
+                <input type="button" value="Cash" class="p-2 m-2" @click="addOrder()">
+                <input type="button" value="Tally" class="p-2" @click="addOrder()">
+            </div>
+        </div>
+    </div>
     
 </template>
 
 <style scoped>
 
-    .food-list {
-        width: min(500px,1000px);
-        height: 75vh;
-        flex-direction: row;
+    .my-order-list {
+        height: 40vh;
     }
 
-    .order_list {
-        width: 50%;
-        height: 75vh;
+    .my-payment {
+        height: 25vh;
+    }
+
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .food-list { grid-area: 1 / 1 / 6 / 4; }
+    .my-order { grid-area: 1 / 4 / 6 / 6; }
+
+    .food-grid {
+        display: flex;
+        flex-wrap: wrap; 
+        height: 67.3vh;
+        overflow-y: scroll;
+        gap: 5px;
     }
 
 </style>
