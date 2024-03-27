@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-pink {
+    border-radius: 3px;
+    background-color: #F02E65;
+}
+
+.box-shadow {
+    box-shadow: 2px 3px 0 #aa1640;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0,.25);
+}
