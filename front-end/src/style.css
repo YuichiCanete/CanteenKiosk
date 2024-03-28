@@ -5,6 +5,7 @@
 
 body {
     background-color: #FFB6D5;
+    /* background-color: white; */
 }
 
 .color-base {
@@ -52,3 +53,19 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background-color: #D94496;
   }
+
+.btn-uic, .inp-uic {
+    color: #D94496;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 3px rgba(187, 31, 83, .75);
+    
+}
+
+.btn-uic:active {
+    color: white;
+    box-shadow: 0 -3px rgba(114, 7, 43, 0.75);
+    background-color: rgba(187, 31, 83, .75);
+}

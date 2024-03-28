@@ -35,8 +35,8 @@
             <div class="my-payment text-center">
                 <h4>Payment</h4>
                 <p>Total Payment: 99999</p>
-                <input type="button" value="Cash" class="p-2 m-2" @click="addOrder()">
-                <input type="button" value="Tally" class="p-2" @click="addOrder()">
+                <input type="button" value="Cash" class="m-2 btn-uic" @click="addOrder()">
+                <input type="button" value="Tally" class="btn-uic" @click="addOrder()">
             </div>
         </div>
     </div>

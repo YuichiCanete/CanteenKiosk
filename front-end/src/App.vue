@@ -24,7 +24,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <input type="button" value="Logout" class="logout-btn" @click="logout()">
+    <input type="button" value="Logout" class="logout-btn btn-uic" @click="logout()">
   </div>
 </template>
 

@@ -1,12 +1,16 @@
 <script setup>
-
+    import {useRouter} from 'vue-router'
+    const router = useRouter()
+    function switchTo(path){
+        router.push(path)
+    }  
 </script>
 
 <template>
     <Header title="View Orders"></Header>
 
     <div class="m-3">
-        <div class="order-table color-base p-2 m-2">
+        <div class="order-table color-base p-2 m-2 box-shadow round-border">
             <table class="w-100">
                 <tr>
                     <th>ID</th>
@@ -28,8 +32,8 @@
 
         </div>
 
-        <input type="button" value="Edit Menu" class="p-2 m-2">
-        <input type="button" value="Print" class="p-2 m-2">
+        <input type="button" value="Edit Menu" class="btn-uic m-2" @click="switchTo('/editMenu')">
+        <input type="button" value="Print" class="btn-uic m-2">
 
     </div>
 

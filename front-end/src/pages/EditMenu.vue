@@ -6,7 +6,7 @@
     <Header title="Edit Menu"></Header>
 
     <div class="m-3">
-        <div class="menu-table color-base p-2 m-2">
+        <div class="menu-table color-base p-2 m-2 box-shadow round-border">
             <table class="w-100">
                 <tr>
                     <th>Image</th>
