@@ -10,7 +10,7 @@
 <template>
     <Header title="Create Order"></Header>
     <div class="container-fluid d-flex align-items-center justify-content-center text-center" style="height: 75vh;">
-        <div class="order-container color-base p-3">
+        <div class="order-container color-base p-3 round-border box-shadow">
             <h1>Order Successful</h1>
             <p>Your Order Number is...</p>
             <p style="font-size: 100px; font-weight: bold;">##</p>

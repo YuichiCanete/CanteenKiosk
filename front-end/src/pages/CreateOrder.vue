@@ -18,9 +18,9 @@
     
     <div class="parent">
         <div class="food-list p-2">
-            <h2>Menu Items</h2>
+            <h2 class="text-white text-shadow">Menu Items</h2>
 
-            <div class="food-grid justify-content-between">
+            <div class="food-grid justify-content-between p-3">
                 <div v-for="i in 20">
                     <FoodCard/>
                 </div>    
@@ -28,7 +28,7 @@
 
         </div>
         <div class="my-order p-2">
-            <h2>My Order</h2>
+            <h2 class="text-shadow text-white">My Order</h2>
             <div class="my-order-list">
 
             </div>
@@ -69,7 +69,7 @@
         flex-wrap: wrap; 
         height: 67.3vh;
         overflow-y: scroll;
-        gap: 5px;
+        gap: 20px;
     }
 
 </style>
