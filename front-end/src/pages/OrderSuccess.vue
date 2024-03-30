@@ -1,9 +1,19 @@
 <script setup>
+    import {data} from './data.js'
     import {useRouter} from 'vue-router'
     const router = useRouter()
     function switchTo(path){
         router.push(path)
     }
+
+    console.log(data.orderNum)
+    data.incrementOrder()
+    console.log(data.orderNum)
+
+    console.log(data.foodList)
+
+    data.addFood('Mentos',5,5)
+    console.log(data.foodList)
 
 </script>
 
@@ -13,9 +23,9 @@
         <div class="order-container color-base p-3 round-border box-shadow">
             <h1>Order Successful</h1>
             <p>Your Order Number is...</p>
-            <p style="font-size: 100px; font-weight: bold;">##</p>
-            <input type="button" value="New Order" class="p-2" @click="switchTo('/createOrder')">
-            <input type="button" value="Logout" class="p-2" @click="switchTo('/')">
+            <p style="font-size: 100px; font-weight: bold;">{{ data.orderNum }}</p>
+            <input type="button" value="New Order" class="btn-uic m-2" @click="switchTo('/createOrder')">
+            <input type="button" value="Logout" class="btn-uic m-2" @click="switchTo('/')">
         </div>
     </div>
 </template>
