@@ -1,5 +1,8 @@
 <script setup>
-
+    import { data } from '../pages/data.js';
+    defineProps({
+        food: Object
+    })
 </script>
 
 <template>
@@ -10,17 +13,18 @@
             </tr>
             <tr>
                 <td>
-                    <p style="float: left;">Food Name</p>
-                    <p style="float: right;">Food Price</p>
+                    <p style="float: left;" class="m-2">{{ food.name }}</p>
+                    <p style="float: right;" class="m-2">P{{ food.price }}</p>
                 </td>
+            </tr>
+            <tr>
+                <button class="btn-uic" style="float: right;" @click="data.addFoodToOrder(food.name)">Add</button>
             </tr>
         </table>
     </div>
 </template>
 
 <style scoped>
-
-    
 
 </style>
 

@@ -6,15 +6,6 @@
         router.push(path)
     }
 
-    console.log(data.orderNum)
-    data.incrementOrder()
-    console.log(data.orderNum)
-
-    console.log(data.foodList)
-
-    data.addFood('Mentos',5,5)
-    console.log(data.foodList)
-
 </script>
 
 <template>

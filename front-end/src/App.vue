@@ -1,5 +1,6 @@
 <script setup>
 
+  import {data} from './pages/data.js'
   import {useRouter} from 'vue-router'
   const router = useRouter()
   function switchTo(path){
@@ -11,14 +12,9 @@
     switchTo('/')
   }
 
-</script>
+  data.addFood('Egg', 20, 20);
+  data.addFood('Hotdog', 10, 10);
 
-<script>
-  import {useRouter} from 'vue-router'
-  const router = useRouter()
-  function switchTo(path){
-    router.push(path)
-  }
 </script>
 
 <template>
@@ -36,7 +32,7 @@
   .logout-btn {
     position: absolute;
     top: 95%;
-    left: 95%;
+    left: 90%;
     transform: translate(-50%,-50%);
   }
 

@@ -15,7 +15,6 @@
 <template>
 
     <Header title="Login Page"></Header>
-
     <div class="container-fluid d-flex align-items-center justify-content-center text-center" style="height: 75vh;">
         <div class="login-container color-base p-5 box-shadow round-border">
             <h1 class="text-white text-shadow">Login</h1> <br>
@@ -32,8 +31,12 @@
 
 
     .login-container {
-        width: 50%;
+        width: min(500px,50%);
         height: 75%;
+    }
+
+    .inp-uic {
+        width: min(250px,90%);
     }
     
 
