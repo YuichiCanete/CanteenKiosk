@@ -1,7 +1,24 @@
-# Vue 3 + Vite
+# Users for demo
+```
+user id: 220000742
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+password: userpass
 
-## Recommended IDE Setup
+user type: student
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+
+
+user id: 220000743
+
+password: userpass
+
+user type: student
+
+
+
+user id: 220000744
+
+password: userpass
+
+user type: cashier
+```

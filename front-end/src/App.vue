@@ -12,16 +12,17 @@
     switchTo('/')
   }
 
-  data.addFood('Egg', 20, 20);
-  data.addFood('Hotdog', 10, 10);
+  data.value.addFood('Egg', 20, 20);
+  data.value.addFood('Hotdog', 10, 10);
+
+  data.value.addUser('220000742','userpass','student')
+  data.value.addUser('220000743','userpass','student')
+  data.value.addUser('220000744','userpass','cashier')
 
 </script>
 
 <template>
   <div>
-
-    
-
     <router-view></router-view>
     <input type="button" value="Logout" class="logout-btn btn-uic" @click="logout()">
   </div>

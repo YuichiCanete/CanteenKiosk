@@ -11,6 +11,11 @@
             <p>{{ food.quantity }}</p>
             <p>P{{ food.price * food.quantity }}</p>
         </div>
+        <div>
+            <button class="btn-uic plus-minus" @click="data.decrementFood(food.name)">-</button>
+            <button class="btn-uic plus-minus" @click="data.incrementFood(food.name)">+</button>
+        </div>
+        
     </div>
 </template>
 
@@ -18,6 +23,14 @@
 
     p {
         margin: 0;
+    }
+
+    .plus-minus {
+        border-radius: 100%;
+        width: 45px;
+        height: 45px;
+        font-weight: bold;
+        margin: 3px;
     }
 
 </style>

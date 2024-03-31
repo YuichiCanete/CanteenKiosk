@@ -9,8 +9,11 @@
     }
 
     function addOrder(){
+        data.value.addOrder()
         switchTo('/orderSuccess')
     }
+
+    
 
 </script>
 
@@ -31,7 +34,7 @@
             <h2 class="text-shadow text-white">My Order</h2>
             <div class="my-order-list" style="overflow-y: auto; overflow-x: hidden;">
                 <div v-for="food in data.foodList">
-                    <FoodInList :food="food"/>
+                    <FoodInList :food="food" v-if="food.quantity"/>
                 </div>
             </div>
             <div class="my-payment text-center">
