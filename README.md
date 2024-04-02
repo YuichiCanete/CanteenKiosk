@@ -23,5 +23,6 @@
 ### Test
 
 ```
-  No test yet
+  npm install cypress --save-dev
+  npx cypress run
 ```
