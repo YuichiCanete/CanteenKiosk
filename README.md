@@ -17,11 +17,13 @@
 ### Back End
 
 ```
-  No Back end yet
+  cd back-end
 ```
 
 ### Test
 
 ```
-  No test yet
+  cd test-dev
+  npm install cypress --save-dev
+  npx cypress run
 ```
