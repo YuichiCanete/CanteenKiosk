@@ -1,5 +1,5 @@
 <script setup>
-
+    import {data} from './data.js'
 </script>
 
 <template>
@@ -8,19 +8,28 @@
     <div class="m-3">
         <div class="menu-table color-base p-2 m-2 box-shadow round-border">
             <table class="w-100">
-                <tr>
+                <tr class="text-white text-shadow under-line">
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Available Stock</th>
                     <th>Actions</th>
                 </tr>
-                <tr v-for="i in 5">
-                    <td>Hello</td>
-                    <td>Hello</td>
-                    <td>Hello</td>
-                    <td>Hello</td>
-                    <td>Hello</td>
+                <tr v-for="food in data.foodList" class="under-line">
+                    <td>IMAGE</td>
+                    <td>{{ food.name }}</td>
+                    <td>{{ food.price }}</td>
+                    <td>{{ food.inventory }}</td>
+                    <td>
+                        <button class="btn-uic m-2">Done</button>
+                        <button class="btn-uic m-2">Cancel</button>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="5" style="text-align: center;">
+                        <button class="btn-uic m-2">Add New Item</button>
+                    </td>
                 </tr>
             </table>
 
@@ -32,9 +41,15 @@
 
 <style scoped>
 
+
     .menu-table{
-        width: 90%;
+        margin: 0 auto;
+        width: min(750px,80%);
         height: 60vh;
+    }
+
+    .under-line {
+        border-bottom: 1px solid white;
     }
 
 </style>

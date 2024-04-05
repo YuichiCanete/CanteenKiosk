@@ -1,16 +1,21 @@
-
 import {ref} from 'vue'
 
 class StartData {
     constructor() {
+        this.myUrl = ''
         this.orderNum = 0;
+        this.payType = 'cash'
         this.foodList = [];
         this.orderList = [];
         this.userList = [];
         this.currentUser = {}
-        this.userOrder = {
-            number: 0
-        };
+
+        // <th>ID</th>
+        // <th>Order</th>
+        // <th>Payment Type</th>
+        // <th>Total</th>
+        // <th>Date</th>
+        // <th>Actions</th>
     }
 
     loginUser(user){
@@ -41,8 +46,16 @@ class StartData {
 
     addOrder() {
         this.orderNum += 1
-        this.orderList.push(this.userOrder);
-        this.resetOrder()
+
+        let userOrder = {
+            orderNum: this.orderNum,
+            foodList: this.foodList,
+            payType: this.payType,
+            date: '0000-00-00'
+        };
+
+        this.orderList.push(userOrder);
+        // this.resetOrder()
     }
 
     resetOrder(){
@@ -77,9 +90,9 @@ class StartData {
         })
     }
 
-    getTotal(){
+    getTotal(fl){
         let total = 0
-        this.foodList.forEach(function(food){
+        fl.forEach(function(food){
             total += food.quantity * food.price
         })
         return total

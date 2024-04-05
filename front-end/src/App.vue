@@ -19,6 +19,11 @@
   data.value.addUser('220000743','userpass','student')
   data.value.addUser('220000744','userpass','cashier')
 
+  data.value.foodList[0].quantity = 69
+  data.value.foodList[1].quantity = 420
+  data.value.addOrder()
+  data.value.addOrder()
+
 </script>
 
 <template>

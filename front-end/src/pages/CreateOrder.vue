@@ -39,7 +39,7 @@
             </div>
             <div class="my-payment text-center">
                 <h4>Payment</h4>
-                <p>Total Payment: {{ data.getTotal() }}</p>
+                <p>Total Payment: {{ data.getTotal(data.foodList) }}</p>
                 <input type="button" value="Cash" class="m-2 btn-uic" @click="addOrder()">
                 <input type="button" value="Tally" class="btn-uic" @click="addOrder()">
             </div>
