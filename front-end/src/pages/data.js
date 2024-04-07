@@ -9,13 +9,6 @@ class StartData {
         this.orderList = [];
         this.userList = [];
         this.currentUser = {}
-
-        // <th>ID</th>
-        // <th>Order</th>
-        // <th>Payment Type</th>
-        // <th>Total</th>
-        // <th>Date</th>
-        // <th>Actions</th>
     }
 
     loginUser(user){
@@ -45,24 +38,30 @@ class StartData {
     }
 
     addOrder() {
-        this.orderNum += 1
-
-        let userOrder = {
+        this.orderNum += 1;
+        const newFoodList = [...this.foodList];
+        const newPayType = this.payType;
+        const userOrder = {
             orderNum: this.orderNum,
-            foodList: this.foodList,
-            payType: this.payType,
+            foodList: newFoodList,
+            payType: newPayType,
             date: '0000-00-00'
         };
-
-        this.orderList.push(userOrder);
-        // this.resetOrder()
+        this.orderList.push({...userOrder}); 
+        console.log(userOrder)
+        this.resetOrder();
+        console.log(userOrder)
     }
-
-    resetOrder(){
-        this.foodList.forEach(function(food){
-            food.quantity = 0
-        })
+    
+    
+    resetOrder() {
+        const newFoodList = this.foodList.map(food => ({ ...food }));
+        newFoodList.forEach(function (food) {
+            food.quantity = 0;
+        });
+        this.foodList = newFoodList;
     }
+    
 
     addFoodToOrder(name){
         this.foodList.forEach(function(food){
