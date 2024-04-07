@@ -17,7 +17,8 @@
 ### Back End
 
 ```
-  cd back-end
+  Open miniconda
+  uvicorn main:app --reload
 ```
 
 ### Test

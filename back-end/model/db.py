@@ -5,7 +5,7 @@ db_config = {
     "host": "localhost",
     "user": "root",
     "password": "",
-    "database": "be_test_db",
+    "database": "canteen_kiosk",
     "port": 3306,
 }
 
