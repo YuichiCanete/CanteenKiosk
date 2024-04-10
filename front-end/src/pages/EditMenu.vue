@@ -46,6 +46,7 @@
         margin: 0 auto;
         width: min(750px,80%);
         height: 60vh;
+        overflow: auto;
     }
 
     .under-line {

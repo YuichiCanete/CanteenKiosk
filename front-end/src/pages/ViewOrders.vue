@@ -28,7 +28,6 @@
                     <td>{{ order.date }}</td>
                 </tr>
             </table>
-
         </div>
 
         <input type="button" value="Edit Menu" class="btn-uic m-2" @click="switchTo('/editMenu')">
@@ -46,6 +45,7 @@
     .order-table{
         width: 90%;
         height: 60vh;
+        overflow: auto;
     }
 
     td ,tr {

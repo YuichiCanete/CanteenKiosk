@@ -6,7 +6,7 @@
   git clone https://github.com/YuichiCanete/CanteenKiosk.git
 ```
 
-### Front End
+### Front End (using vscode)
 
 ```
   cd front-end
@@ -14,14 +14,15 @@
   npm run dev
 ```
 
-### Back End
+### Back End (using miniconda) (edit on vscode)
 
 ```
   Open miniconda
+  cd back-end
   uvicorn main:app --reload
 ```
 
-### Test
+### Test (using vscode)
 
 ```
   cd test-dev
