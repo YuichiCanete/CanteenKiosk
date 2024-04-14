@@ -22,7 +22,13 @@
                 </tr>
                 <tr v-for="order in data.orderList" class="under-line">
                     <td>{{ order.orderNum }}</td>
-                    <td><p v-for="food in order.foodList">{{ food.name }} x{{ food.quantity }}</p></td>
+                    <td>
+                        <p v-for="food in order.foodList">
+                            <div v-if="food.quantity > 0">
+                                {{ food.name }} x{{ food.quantity }}
+                            </div>
+                        </p>
+                    </td>
                     <td>{{ order.payType }}</td>
                     <td>{{ data.getTotal(order.foodList) }}</td>
                     <td>{{ order.date }}</td>

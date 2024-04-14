@@ -67,7 +67,6 @@ class StartData {
         this.foodList.forEach(function(food){
             if (food.name === name){
                 food.quantity += 1
-                console.log(food)
             }
         })
     }

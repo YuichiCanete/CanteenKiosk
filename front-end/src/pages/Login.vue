@@ -8,27 +8,28 @@
     }  
 
     function loginUser(){
-        let id = document.getElementById('inputID').value
-        let pass = document.getElementById('inputPass').value
+        let id = document.getElementById('inputID').value;
+        let pass = document.getElementById('inputPass').value;
         
         var user = data.value.userList.find(function(user){
-            return user.userID === id
-        })
+            return user.userID === id && user.password === pass; // Check both ID and password
+        });
 
         if (user){
-            alert("Login Success")
+            alert("Login Success");
             switch (user.userType){
                 case "student":
-                    switchTo('/createOrder')
-                break;
+                    switchTo('/createOrder');
+                    break;
                 case "cashier":
-                    switchTo('/viewOrders')
-                break;
+                    switchTo('/viewOrders');
+                    break;
             }
         }else{
-            alert("Login Failed")
+            alert("Login Failed. Please check your ID and password.");
         }
     }
+
 
     
 </script>

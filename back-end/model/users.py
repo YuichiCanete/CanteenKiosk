@@ -29,24 +29,21 @@ async def read_user(user_id: int, db=Depends(get_db)):
 async def create_user(
     user_id: int = Form(...),
     password: str = Form(...), 
-    can_tally: int = Form(...), 
+    can_tally: bool = Form(...), 
     db=Depends(get_db)
 ):
     # Hash the password using bcrypt
     hashed_password = hash_password(password)
 
     query = "INSERT INTO user (user_id, password, can_tally) VALUES (%s, %s, %s)"
-    db[0].execute(query, (user_id, password, can_tally))
+    db.execute(query, (user_id, hashed_password, can_tally))  # Pass hashed_password instead of plain text password
 
-    # Retrieve the last inserted ID using LAST_INSERT_ID()
-    db[0].execute("SELECT LAST_INSERT_ID()")
-    new_user_id = db[0].fetchone()[0]
+    db[0].fetchone()[0]
     db[1].commit()
-
-    return {"user_id": user_id, "password": password, "can_tally": can_tally}
-
+    return {"user_id": user_id, "password": hashed_password, "can_tally": can_tally}
 
 # PUT
+
 # DELETE
 
 # Hash Password
