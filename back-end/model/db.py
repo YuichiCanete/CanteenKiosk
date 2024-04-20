@@ -1,4 +1,3 @@
-# model/db.py
 import mysql.connector
 
 db_config = {
@@ -13,7 +12,7 @@ def get_db():
     db = mysql.connector.connect(**db_config)
     cursor = db.cursor()
     try:
-        yield cursor
+        yield cursor, db
     finally:
         cursor.close()
         db.close()

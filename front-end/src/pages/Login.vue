@@ -1,30 +1,38 @@
 <script setup>
 
-    import { data } from './data.js';
+    import { ref } from 'vue';    
+    import { data,apiFunc } from './data.js';
     import {useRouter} from 'vue-router'
     const router = useRouter()
     function switchTo(path){
         router.push(path)
-    }  
+    }
 
+    
+    async function getUsers(){
+        return await apiFunc.value.get('http://127.0.0.1:8000/api/user/')
+    }
+    let users = ref(getUsers().data)
+    
     function loginUser(){
-        let id = document.getElementById('inputID').value;
+        let id = parseInt(document.getElementById('inputID').value);
         let pass = document.getElementById('inputPass').value;
         
-        var user = data.value.userList.find(function(user){
-            return user.userID === id && user.password === pass; // Check both ID and password
+        var user = users.find(function(user){
+            return user.user_id === id && user.password === pass; // Check both ID and password
         });
 
         if (user){
             alert("Login Success");
-            switch (user.userType){
-                case "student":
-                    switchTo('/createOrder');
-                    break;
-                case "cashier":
-                    switchTo('/viewOrders');
-                    break;
-            }
+            switchTo('/createOrder')
+            // switch (user.userType){
+            //     case "student":
+            //         switchTo('/createOrder');
+            //         break;
+            //     case "cashier":
+            //         switchTo('/viewOrders');
+            //         break;
+            // }
         }else{
             alert("Login Failed. Please check your ID and password.");
         }

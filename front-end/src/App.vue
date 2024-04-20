@@ -1,30 +1,22 @@
 <script setup>
 
-  import axios from 'axios'; //Connect to db
-
+  
   import {data} from './pages/data.js'
   import {useRouter} from 'vue-router'
   const router = useRouter()
   function switchTo(path){
     router.push(path)
   }
-  switchTo('/')
 
   function logout(){
     switchTo('/')
   }
 
-  const fetch = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/user/');
-      console.log(response.data) //Return val
-    } catch (error) {
-      console.error('Error Message:', error);
-    } finally {
-    }
-  };
+  
 
-  fetch()
+  
+
+
 
   data.value.addFood('Egg', 64, 10);
   data.value.addFood('Hotdog', 30, 15);

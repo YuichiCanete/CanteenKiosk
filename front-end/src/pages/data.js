@@ -1,4 +1,5 @@
 import {ref} from 'vue'
+import axios from 'axios';
 
 class StartData {
     constructor() {
@@ -62,7 +63,6 @@ class StartData {
         this.foodList = newFoodList;
     }
     
-
     addFoodToOrder(name){
         this.foodList.forEach(function(food){
             if (food.name === name){
@@ -97,6 +97,88 @@ class StartData {
     }
 }
 
+
+class apiFunctions {
+
+    constructor(){
+        resetState()
+    }
+
+    resetState(){
+        this.loading = false
+        this.error = null
+        this.success = false
+    }
+
+    getState(){
+        return{
+            loading: this.loading,
+            error: this.error,
+            success: this.success
+        }
+    }
+
+    async get(linkRoute) {
+        try {
+            const response = await axios.get(linkRoute);
+            console.log('Get Success');
+            return {
+                isSuccess: true,
+                data: response.data
+            }
+        } catch (error) {
+            console.error('Error Message:', error);
+            return {
+                isSuccess: false,
+                data: []
+            };
+        }
+    }
+
+    async update(linkRoute,updatedObject){
+        try {
+          const response = await axios.put(linkRoute, updatedObject,{
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
+            }
+        });
+          console.log('Update Success');
+        } catch (err) {
+          console.error('Update Error:', err);
+        }
+    }
+
+    async add(linkRoute,addObject){
+        try {
+            await axios.post(linkRoute, addObject, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                }
+            });
+            console.log('Adding Success')
+        } catch (err) {
+            console.error('Adding Error:', err);    
+        }
+    }
+
+    async remove(linkRoute){
+        // Make sure naay ID
+        try {
+            await axios.delete(linkRoute);   
+            console.log('Delete Success')
+        } catch (err) {
+            console.error('Deleting Error:', err);
+        }
+    }
+}
+
+// [Extract Id from link]
+// const router = useRouter();
+// const expenseId = parseInt(router.currentRoute.value.params.expenseId);
+
 // Example usage:
 const data = ref(new StartData())
-export { data };
+const apiFunc = ref(new apiFunctions())
+export { data , apiFunc};

@@ -8,6 +8,9 @@ import router from "./router";
 
 import Header from "./components/Header.vue"
 
+import Button from "primevue/button"
+
+
 createApp(App)
     .use(router)
     .use(PrimeVue, { ripple: true })
