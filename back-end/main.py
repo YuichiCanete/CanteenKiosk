@@ -6,6 +6,7 @@ from model.user_order import userOrderRouter
 from model.food import foodRouter
 from model.order import orderRouter
 from model.tally import tallyRouter
+from model.view_order import viewOrderRouter
 
 app = FastAPI()
 
@@ -16,6 +17,7 @@ app.include_router(userOrderRouter, prefix="/api")
 app.include_router(foodRouter, prefix="/api")
 app.include_router(orderRouter, prefix="/api")
 app.include_router(tallyRouter, prefix="/api")
+app.include_router(viewOrderRouter, prefix="/api")
 
 # Configure CORS settings
 app.add_middleware(

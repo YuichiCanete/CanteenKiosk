@@ -97,31 +97,52 @@ class StartData {
     }
 }
 
-
-class apiFunctions {
-
+class meOrder{
     constructor(){
-        resetState()
+        this.foodList = []
     }
 
-    resetState(){
-        this.loading = false
-        this.error = null
-        this.success = false
-    }
-
-    getState(){
-        return{
-            loading: this.loading,
-            error: this.error,
-            success: this.success
+    addFood(food,price,available_stock){
+        let existingFood = this.foodList.find(f => f.food_name === food);
+        if (existingFood) {
+            console.log("Food already exists in the list.");
+        } else {
+            this.foodList.push({
+                food_name: food,
+                price: price,
+                available_stock: available_stock,
+                quantity: 1,
+            });
         }
     }
+
+    incFood(food){
+        this.foodList.forEach(function(f){
+            if (f.food_name===food && f.quantity < f.available_stock){
+                f.quantity += 1
+            }
+        })
+    }
+
+    decFood(food) {
+        this.foodList.forEach((f, index) => {
+            if (f.food_name === food && f.quantity > 0) {
+                f.quantity -= 1;
+                if (f.quantity === 0) {
+                    this.foodList.splice(index, 1); // Remove the element from the array
+                }
+            }
+        });
+    }
+}
+
+class apiFunctions {
 
     async get(linkRoute) {
         try {
             const response = await axios.get(linkRoute);
             console.log('Get Success');
+            console.log(response.data)
             return {
                 isSuccess: true,
                 data: response.data
@@ -181,4 +202,5 @@ class apiFunctions {
 // Example usage:
 const data = ref(new StartData())
 const apiFunc = ref(new apiFunctions())
-export { data , apiFunc};
+const myOrder = ref(new meOrder())
+export { data , apiFunc, myOrder};

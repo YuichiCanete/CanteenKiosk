@@ -1,42 +1,51 @@
 <script setup>
 
-    import { ref } from 'vue';    
-    import { data,apiFunc } from './data.js';
-    import {useRouter} from 'vue-router'
-    const router = useRouter()
-    function switchTo(path){
-        router.push(path)
-    }
+import { ref } from 'vue';
+import { apiFunc } from './data.js';
+import { useRouter } from 'vue-router';
 
-    
-    async function getUsers(){
-        return await apiFunc.value.get('http://127.0.0.1:8000/api/user/')
-    }
-    let users = ref(getUsers().data)
-    
-    function loginUser(){
-        let id = parseInt(document.getElementById('inputID').value);
-        let pass = document.getElementById('inputPass').value;
-        
-        var user = users.find(function(user){
-            return user.user_id === id && user.password === pass; // Check both ID and password
-        });
+const router = useRouter();
 
-        if (user){
-            alert("Login Success");
-            switchTo('/createOrder')
-            // switch (user.userType){
-            //     case "student":
-            //         switchTo('/createOrder');
-            //         break;
-            //     case "cashier":
-            //         switchTo('/viewOrders');
-            //         break;
-            // }
-        }else{
-            alert("Login Failed. Please check your ID and password.");
+function switchTo(path) {
+    router.push(path);
+}
+
+async function getUsers(useID) {
+    return await apiFunc.value.get('http://127.0.0.1:8000/api/users/' + useID);
+}
+
+async function loginUser() {
+    let id = parseInt(document.getElementById('inputID').value);
+    let pass = document.getElementById('inputPass').value;
+
+    let user = await getUsers(id);
+    console.log(user);
+
+    if (user.isSuccess && user.data.length > 0) {
+        user = user.data[0];
+        if (id === user.user_id) {
+            if (pass === user.password) {
+                alert('Login Success');
+                switch (user.user_type){
+                    case "student":
+                    case "teacher":
+                        switchTo('/createOrder');
+                        break;
+                    case "cashier":
+                        switchTo('/viewOrders');
+                        break;
+                }
+            } else {
+                alert('Wrong Password');
+            }
+        } else {
+            alert('Cannot find user');
         }
+    } else {
+        alert('User not found or error occurred');
     }
+}
+
 
 
     

@@ -1,8 +1,10 @@
 <script setup>
     import FoodCard from '../components/FoodCard.vue'
     import FoodInList from '../components/FoodInList.vue';
-    import {data} from './data.js'
+    import {data,apiFunc,myOrder} from './data.js'
     import {useRouter} from 'vue-router'
+    import { onBeforeMount, ref } from 'vue';
+    
     const router = useRouter()
     function switchTo(path){
         router.push(path)
@@ -13,7 +15,23 @@
         switchTo('/orderSuccess')
     }
 
+    let isloaded = ref(false)
+    let foodList = ref([])
+    async function getFood() {
+        let getF = await apiFunc.value.get('http://127.0.0.1:8000/api/food_details')
+        foodList.value = getF.data
+        if (getF.isSuccess){
+            isloaded.value = true
+        }
+    }
+    onBeforeMount(getFood)
+
     
+
+    
+
+    
+
 
 </script>
 
@@ -24,16 +42,16 @@
     <div class="parent">
         <div class="food-list p-2">
             <h2 class="text-white text-shadow">Menu Items</h2>
-            <div class="food-grid justify-content-between p-3">
-                <div v-for="food in data.foodList">
-                    <FoodCard :food="food"/>
+            <div class="food-grid justify-content-between p-3" v-if="isloaded">
+                <div v-for="food in foodList">
+                    <FoodCard :name="food.name" :price="food.price" :available_stock="food.available_stock" v-if="food.available_stock > 0"/>
                 </div>    
             </div>
         </div>
         <div class="my-order p-2">
             <h2 class="text-shadow text-white">My Order</h2>
             <div class="my-order-list" style="overflow-y: auto; overflow-x: hidden;">
-                <div v-for="food in data.foodList">
+                <div v-for="food in myOrder.foodList">
                     <FoodInList :food="food" v-if="food.quantity"/>
                 </div>
             </div>
