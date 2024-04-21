@@ -31,7 +31,7 @@
                     orderList.value.push(groupOrder[o.order_id]);
                 }
                 groupOrder[o.order_id].foodList.push({name: o.food_name, quantity:o.quantity});
-                groupOrder[o.order_id].total += o.unit_price;
+                groupOrder[o.order_id].total += o.unit_price * o.quantity;
             });
             console.log(orderList.value);
             isLoaded.value = true;

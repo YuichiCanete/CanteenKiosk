@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 03:26 PM
+-- Generation Time: Apr 21, 2024 at 11:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,7 +78,7 @@ CREATE TABLE `food_details` (
 --
 
 INSERT INTO `food_details` (`food_detail_id`, `name`, `price`, `available_stock`) VALUES
-(1, 'eggy', 30, 30),
+(1, 'egg', 15, 10),
 (2, 'hotdog', 15, 30),
 (3, 'siomai', 5, 50),
 (4, 'rice', 10, 97),
@@ -159,7 +159,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `password`, `can_tally`, `user_type`) VALUES
 (69420, 'worldhello', 1, 'personnel'),
 (12345678, '87654321', 0, 'cashier'),
-(220000743, 'helloworld', 0, 'student'),
+(220000743, 'strongpass', 0, 'student'),
 (220000744, 'password2', 0, 'student'),
 (220000745, 'password3', 1, 'personnel'),
 (220000746, 'password4', 1, 'personnel'),
