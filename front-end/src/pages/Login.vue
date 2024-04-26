@@ -5,6 +5,7 @@ import { apiFunc } from './data.js';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+let errorMessage = ref('')
 
 function switchTo(path) {
     router.push(path);
@@ -19,30 +20,30 @@ async function loginUser() {
     let pass = document.getElementById('inputPass').value;
 
     let user = await getUsers(id);
+    
     console.log(user);
 
     if (user.isSuccess && user.data.length > 0) {
         user = user.data[0];
-        if (id === user.user_id) {
-            if (pass === user.password) {
-                alert('Login Success');
-                switch (user.user_type){
-                    case "student":
-                    case "teacher":
-                        switchTo('/createOrder');
-                        break;
-                    case "cashier":
-                        switchTo('/viewOrders');
-                        break;
-                }
-            } else {
-                alert('Wrong Password');
+        if (id === user.user_id && pass === user.password) {
+            alert('Login Success');
+            switch (user.user_type){
+                case "personnel":
+                    switchTo('/createOrder');
+                    break;
+                case "cashier":
+                    switchTo('/viewOrders');
+                    break;
+                case "admin":
+                    break;
+                case "counter":
+                    break;
             }
         } else {
-            alert('Cannot find user');
+            errorMessage.value = 'Incorrect Credentials'
         }
     } else {
-        alert('User not found or error occurred');
+        errorMessage.value = 'Incorrect Credentials'
     }
 }
 
@@ -60,6 +61,7 @@ async function loginUser() {
             <input type="text" placeholder="User ID" class="p-2 m-2 inp-uic" id="inputID"> <br>
             <input type="password" placeholder="Password" class="p-2 m-2 inp-uic" id="inputPass"> <br>
             <input type="button" value="Login" @click="loginUser()" class="p-2 m-2 btn-uic">
+            <p class="text-red">{{ errorMessage }}</p>
         </div>
     </div>
     
