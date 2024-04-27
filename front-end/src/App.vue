@@ -1,7 +1,7 @@
 <script setup>
 
   
-  import {data} from './pages/data.js'
+  import {data,apiFunc} from './pages/data.js'
   import {useRouter} from 'vue-router'
   const router = useRouter()
   function switchTo(path){
@@ -12,7 +12,28 @@
     switchTo('/')
   }
 
-  
+  async function tryPost() {
+    return await apiFunc.value.add('http://127.0.0.1:8000/api/users/',{
+      user_id:70,
+      password:"420pass",
+      user_type:"helloworld"
+    });
+  }
+
+  async function tryDel() {
+    return await apiFunc.value.remove('http://127.0.0.1:8000/api/users/70');
+  }
+
+  async function tryUpdate() {
+    return await apiFunc.value.update('http://127.0.0.1:8000/api/users/70',{
+      password:"pass320",
+      user_type:"helloworld"
+    });
+  }
+
+  // tryDel()
+  // tryPost()
+  // tryUpdate()
 
   
 
