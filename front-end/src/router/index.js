@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import Admin from "../pages/Admin.vue"
 import Login from "../pages/Login.vue"
 import CreateOrder from "../pages/CreateOrder.vue"
 import OrderSuccess from "../pages/OrderSuccess.vue"
 import Counter from "../pages/Counter.vue"
 import EditMenu from "../pages/EditMenu.vue"
 import ViewOrders from "../pages/ViewOrders.vue"
+
 
 const routes = []
 
@@ -23,6 +25,7 @@ addRoute("/orderSuccess","Order Success",OrderSuccess)
 addRoute("/counter","Counter",Counter) //Low priority
 addRoute("/editMenu","Edit Menu",EditMenu) 
 addRoute("/viewOrders","View Orders",ViewOrders)
+addRoute("/admin","Admin",Admin)
 
 const router = createRouter({
     history: createWebHistory(),

@@ -35,6 +35,7 @@ async function loginUser() {
                     switchTo('/viewOrders');
                     break;
                 case "admin":
+                    switchTo('/admin')
                     break;
                 case "counter":
                     break;
