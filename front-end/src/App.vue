@@ -46,7 +46,7 @@
 <style scoped>
 
   .logout-btn {
-    position: absolute;
+    position: fixed;
     top: 95%;
     left: 90%;
     transform: translate(-50%,-50%);

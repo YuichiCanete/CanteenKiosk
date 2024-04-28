@@ -71,6 +71,7 @@
             <option value="admin">Admin</option>
             <option value="personnel">Personnel</option>
             <option value="cashier">Cashier</option>
+            <option value="counter">Counter</option>
         </select>
         <button class="btn-uic" :id=id.submit v-if="id.submit" @click="id.whenClicked()">Submit</button>
     </div>
