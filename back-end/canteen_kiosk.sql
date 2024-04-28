@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 11:14 PM
+-- Generation Time: Apr 28, 2024 at 05:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,7 +87,10 @@ INSERT INTO `food_details` (`food_detail_id`, `name`, `price`, `available_stock`
 (7, 'lumpia', 5, 75),
 (8, 'pizza', 25, 32),
 (9, 'mentos', 5, 45),
-(10, 'pillows', 10, 0);
+(10, 'pillows', 10, 0),
+(20, 'eggnog', 1, 1),
+(30, 'hello', 20, 20),
+(31, 'hello', 20, 20);
 
 -- --------------------------------------------------------
 
@@ -147,8 +150,7 @@ INSERT INTO `tally` (`tally_id`, `tally_status`, `salary_period`, `user_order_id
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `password` varchar(11) DEFAULT NULL,
-  `can_tally` tinyint(1) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `user_type` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -156,20 +158,19 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `password`, `can_tally`, `user_type`) VALUES
-(69420, 'worldhello', 1, 'personnel'),
-(12345678, '87654321', 0, 'cashier'),
-(220000743, 'strongpass', 0, 'student'),
-(220000744, 'password2', 0, 'student'),
-(220000745, 'password3', 1, 'personnel'),
-(220000746, 'password4', 1, 'personnel'),
-(220000747, 'password5', 1, 'personnel'),
-(220000748, 'password6', 0, 'student'),
-(220000749, 'password7', 0, 'student'),
-(220000750, 'password8', 0, 'student'),
-(220000751, 'password9', 1, 'personnel'),
-(220000752, 'password10', 1, 'personnel'),
-(230000777, 'userpass11', 1, 'personnel');
+INSERT INTO `user` (`user_id`, `password`, `user_type`) VALUES
+(12345678, 'gAAAAABmLmjV6qOhMXH5-aG_jAn69qZLIuSzyFGUUnV5XPNAoeS4_Jl8VVBKG2vfJLqTfo90ItgPqZrykIvYqPli00zi2WrfIA==', 'counter'),
+(111222333, 'gAAAAABmLmi54z35JwpeANxp5xPGVS9_Wkt6zkrydfG77SXc1CUa7jkjMzgOWEglBzT_lGZ4ouCqy6ThFlx348qa6NEUOHTQ9Q==', 'admin'),
+(220000743, 'gAAAAABmLmhRdEuqOHh8UqVGZWYBWLHiYO16VhqiOnMpf0BnxQgg4LF_O53QNXqz8wPRZrlO-TvJx-x85WHGVjjreNXq9wRMtg==', 'personnel'),
+(220000744, 'gAAAAABmLmhWSI0HjEG6DxSczBJ8xZpaFJb_ls2roLgR3VwLG1Nr9R6IL4SOCvbBW-Kn0MsFbu7kTI-NEhA0O3eZ2yjXJgZY5Q==', 'personnel'),
+(220000745, 'gAAAAABmLmhYoFLT2HnLPJNAVN50X32NI5De_H6Ga9IteHfTiZV-ymzU2oYaLJQckBqgR-2Fai5jB3lsHqeSx14cUMuk7J0KxQ==', 'personnel'),
+(220000746, 'gAAAAABmLmhb-_KQQFUm5WNKmJ8jMnPCeu2znS-oXgs_ORSlhXhJ4CUZe8TlldFGUdOMY8nBobQ2fTf2WDS7OcryPu-StJna7Q==', 'personnel'),
+(220000747, 'gAAAAABmLmhe4pSSiWZnccqcqd3uRSMj2aN8om9Eb6J9zOHhch_XUSZ43nxoiXaa335BYG-Sh8sKDXTv2lHXp_bZr_-_BYvt5Q==', 'personnel'),
+(220000748, 'gAAAAABmLmhgil3QhJ9QGXO0ACYdFE5WsBFwdWlvua8LTRidnYklJiOb_3aNbsHbA6l5dc-BgIejXp8bnPC6c3leE24zGNuXuw==', 'personnel'),
+(220000749, 'gAAAAABmLmhjK5583YiGH_ibieIVSHxSAm70PmgC6NuZss0DmVJuE5cugeOSVDMw5CLoQPPFmHm_OuxmMA91r-pxyqfC0jrPLg==', 'personnel'),
+(220000750, 'gAAAAABmLmhlxkxBjorMPWk0YriQAj1r_EGiY5C86GUYuHmnApokrSHgBK2HuZ_nDdaaeRygeo-_r2qv7gxLEAH4JoCr6Vl_LA==', 'personnel'),
+(220000751, 'gAAAAABmLmho_aDGhufVoCTWJ_kBt-fs8uOCZnPMSCkmRdvkiOcJjR_oaiaGSdY06U75eqZNHJOO_N4zSzd2-wTH_tnfHSLLag==', 'personnel'),
+(222333444, 'gAAAAABmLmj3cXDXLSKAkwSzlISxPcO00NvgMxuYsmtJuL0lt1vGhEePNaq0lB82IG-02FTdfYZj-JokzLPo9bULSbPHVWP7Qw==', 'cashier');
 
 -- --------------------------------------------------------
 

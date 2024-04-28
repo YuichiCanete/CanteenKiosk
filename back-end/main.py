@@ -19,6 +19,7 @@ app.include_router(orderRouter, prefix="/api")
 app.include_router(tallyRouter, prefix="/api")
 app.include_router(viewOrderRouter, prefix="/api")
 
+
 # Configure CORS settings
 app.add_middleware(
     CORSMiddleware,

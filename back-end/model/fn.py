@@ -2,8 +2,6 @@ from fastapi import Depends, HTTPException, APIRouter, Form
 from .db import get_db
 from datetime import date
 
-test = APIRouter()
-
 async def fetch_data(table_name: str, condition: str = None, value: int = None, db=Depends(get_db)):
     try:
         cursor, _ = db
