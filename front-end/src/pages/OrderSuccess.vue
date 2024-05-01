@@ -1,5 +1,5 @@
 <script setup>
-    import {data} from './data.js'
+    // import {data} from './data.js'
     import {useRouter} from 'vue-router'
     const router = useRouter()
     function switchTo(path){
@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <Header title="Create Order"></Header>
+    <Header title="Create Order" icon="pi-check-circle"></Header>
     <div class="container-fluid d-flex align-items-center justify-content-center text-center" style="height: 75vh;">
         <div class="order-container color-base p-3 round-border box-shadow text-white text-shadow">
             <h1>Order Successful</h1>

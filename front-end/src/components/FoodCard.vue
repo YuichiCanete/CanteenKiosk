@@ -1,5 +1,4 @@
 <script setup>
-    import { data,myOrder } from '../pages/data.js';
     defineProps({
         name: String,
         price: Number,
@@ -8,25 +7,19 @@
 </script>
 
 <template>
-    <div class="color-base p-3 text-center text-light box-shadow round-border" style="width: 225px;">
-        <table>
-            <tr>
-                <td><img src="../assets/food_placeholder.jpg" style="width: 90%;" class="round-border"></td>
-            </tr>
-            <tr>
-                <td>
-                    <p style="float: left;" class="m-2">{{ name }}</p>
-                    <p style="float: right;" class="m-2">P{{ price }}</p>
-                </td>
-            </tr>
-            <tr>
-                <button class="btn-uic" style="float: right;" @click="myOrder.addFood(name,price,available_stock)">Add</button>
-            </tr>
-        </table>
-    </div>
+    <Card style="width: 300px; overflow: hidden;" class="box-shadow">
+        <template #header>
+            <img src="../assets/food_placeholder.jpg" style="width: 100%;">
+        </template>
+        <template #title>{{ name }}</template>
+        <template #subtitle> P{{ price }}</template>
+        <template #footer >
+            <div style="float: right;">
+                <Button icon="pi pi-cart-plus" label="Add" class="m-1"></Button>
+                <Button icon="pi pi-cart-minus" label="Remove" class="m-1"></Button>
+            </div>
+        </template>
+    </Card>
 </template>
 
-<style scoped>
-
-</style>
 

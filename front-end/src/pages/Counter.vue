@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <Header title="Counter"></Header>
+    <Header title="Counter" icon="pi-circle"></Header>
 </template>
 
 <style scoped>

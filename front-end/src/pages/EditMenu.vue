@@ -28,7 +28,7 @@
 </script>
 
 <template>
-    <Header title="Edit Menu"></Header>
+    <Header title="Edit Menu"icon='pi-cart-arrow-down'></Header>
 
     <div class="m-3">
         <div class="menu-table color-base p-2 m-2 box-shadow round-border">

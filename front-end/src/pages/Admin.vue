@@ -1,96 +1,119 @@
 <script setup>
     import { onBeforeMount, ref } from 'vue';
     import { apiFunc } from './data.js';
+    import Dropdown from 'primevue/dropdown';
+    import TabMenu from 'primevue/tabmenu';
+    import { useConfirm } from "primevue/useconfirm";
+    import { useToast } from "primevue/usetoast";
 
-    let ids = ref([{
-        title: 'Add User',
-        user_id: 'add_user_id',
-        password: 'add_password',
-        option: 'add_option',
-        submit: 'add_submit',
-        whenClicked: async function(){
-            let id = parseInt(document.getElementById('add_user_id').value, 10);
-            let pass = document.getElementById('add_password').value
-            let utype = document.getElementById('add_option').value
-            await apiFunc.value.add('http://127.0.0.1:8000/api/users/',{
-                user_id: id,
-                password: pass,
-                user_type: utype
-            })
-            updateUsers()
-        }
-    },{
-        title: 'Edit User',
-        user_id: 'edit_user_id',
-        password: 'edit_password',
-        option: 'edit_option',
-        submit: 'edit_submit',
-        whenClicked: async function(){
-            const [id, pass, utype] = ['edit_user_id', 'edit_password', 'edit_option'].map(id => document.getElementById(id).value);
-            await apiFunc.value.update('http://127.0.0.1:8000/api/users/'.concat(id),{
-                password: pass,
-                user_type: utype
-            })
-            document.getElementById('edit_user_id').value = ''
-            document.getElementById('edit_password').value = ''
-            document.getElementById('edit_option').value = 'admin'
-            updateUsers()
-        }
-    },{
-        title: 'Delete User',
-        user_id: 'delete_user_id',
-        submit: 'delete_submit',
-        whenClicked: async function(){
-            let id = document.getElementById('delete_user_id').value
-            await apiFunc.value.remove('http://127.0.0.1:8000/api/users/'.concat(id));
-            updateUsers()
-        }
-    }])
+    const confirm = useConfirm();
+    const toast = useToast();
 
     let users = ref([]);
     async function updateUsers(){
         let requestUsers = await apiFunc.value.get('http://127.0.0.1:8000/api/users')
         if (requestUsers.isSuccess){
             users.value = requestUsers.data
+            console.log(users.value)
         }
-        console.log(users)
+        resetForm()
     }
     onBeforeMount(updateUsers)
+
+    function resetForm(){
+        userInp.value = ''
+        passInp.value = ''
+        selectedType.value = {}
+    }
     
+    const userTypes = ref([
+        {name: 'Admin', code:'admin',},
+        {name: 'Personnel', code:'personnel'},
+        {name: 'Cashier', code:'cashier'},
+        {name: 'Counter', code:'counter'}
+    ])
+
+    const tabOptions = ref([
+        { label: 'Add User', icon: 'pi pi-user-plus', availForm:[1,1,1,1],},
+        { label: 'Edit User', icon: 'pi pi-user-edit', availForm:[1,1,1,1],},
+        { label: 'Delete User', icon: 'pi pi-trash', availForm:[1,0,0,1],}, 
+    ]);
+
+
+    async function onSubmit() {
+        const actions = [
+            async () => {
+                await apiFunc.value.add('http://127.0.0.1:8000/api/users/', {
+                    user_id: parseInt(userInp.value),
+                    password: passInp.value,
+                    user_type: selectedType.value.code
+                });
+            },
+            async () => {
+                await apiFunc.value.update(`http://127.0.0.1:8000/api/users/${userInp.value}`, {
+                    password: passInp.value,
+                    user_type: selectedType.value.code
+                });
+            },
+            async () => {
+                await apiFunc.value.remove(`http://127.0.0.1:8000/api/users/${userInp.value}`);
+            }
+        ];
+        await actions[selectedTab.value]();
+        updateUsers();
+        loginError()
+
+    }
+
+    const selectedTab = ref(0)
+    const userInp = ref()
+    const passInp = ref()
+    const selectedType = ref()    
+
+    function loginError(){
+        toast.add({
+            severity: 'error', 
+            summary: 'Login Error',
+            detail: 'Incorrect Credentials',
+            life: 2000 });
+    }
 
 </script>
 
 <template>
 
-    <Header title="Admin Page"></Header>
-    <div v-for="id in ids">
-        <h2 class="text-white text-shadow">{{ id.title }}</h2>
-        <input type="number" placeholder="User ID" class="p-2 m-2 inp-uic" :id=id.user_id v-if="id.user_id">
-        <input type="password" placeholder="Password ID" class="p-2 m-2 inp-uic" :id=id.password v-if="id.password">
-        <select name="User Type" class="inp-uic" :id=id.option v-if="id.option">
-            <option value="admin">Admin</option>
-            <option value="personnel">Personnel</option>
-            <option value="cashier">Cashier</option>
-            <option value="counter">Counter</option>
-        </select>
-        <button class="btn-uic" :id=id.submit v-if="id.submit" @click="id.whenClicked()">Submit</button>
+    <Header title="Admin Page" icon="pi-user"></Header>
+
+    <Toast />
+    <ConfirmDialog></ConfirmDialog>
+
+    <TabMenu :model="tabOptions" v-model:activeIndex="selectedTab"/>
+                
+    <h2 class="text-pink m-2">{{ tabOptions[selectedTab].label }}</h2>
+    <InputText placeholder="User Id" class="m-2" id="inputID" v-if="tabOptions[selectedTab].availForm[0]" v-model="userInp"></InputText>
+    <InputText placeholder="Password" class="m-2" id="inputPass" v-if="tabOptions[selectedTab].availForm[1]" v-model="passInp"></InputText>
+    <Dropdown v-model="selectedType" :options="userTypes" optionLabel="name" placeholder="User Type" checkmark :highlightOnSelect="false" class="m-2" id="inputSelect" v-if="tabOptions[selectedTab].availForm[2]"/>
+    <Button label="Submit" @click="onSubmit()" :icon="tabOptions[selectedTab].icon" class="m-2" id="inputSubmit" v-if="tabOptions[selectedTab].availForm[3]"></Button>
+
+    <h2 class="text-pink m-2">Users</h2>
+    <div style="width: 500px;" class="m-2">
+        <DataTable :value="users" tableStyle="width: 100%" scrollable scrollHeight="400px">
+            <Column field="user_id" header="ID"></Column>
+            <Column field="password" header="Password"></Column>
+            <Column field="user_type" header="User type"></Column>
+        </DataTable>
     </div>
-
-    <table class="w-100">
-        <tr class="text-white text-shadow">
-            <th>ID</th>
-            <th>Password</th>
-            <th>User Type</th>
-        </tr>
-        <tr v-for="user in users">
-            <td>{{ user.user_id }}</td>                    
-            <td>{{ user.password }}</td>
-            <td>{{ user.user_type }}</td>
-        </tr>
-    </table>
-
+        
 </template>
 
 <style scoped>
+
+    :deep(.p-menuitem-text), :deep(.p-menuitem-icon){
+        color: #D94496;
+    }
+
+    :deep(.p-menuitem-link){
+        text-decoration: none;
+    }
 
 </style>

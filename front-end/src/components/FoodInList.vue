@@ -1,5 +1,5 @@
 <script setup>
-    import { data,myOrder } from '../pages/data.js';
+    import { myOrder } from '../pages/data.js';
     defineProps({ food: Object })
 </script>
 

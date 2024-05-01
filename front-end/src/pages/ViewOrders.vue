@@ -1,6 +1,6 @@
 <script setup>
     import { onBeforeMount, ref } from 'vue';
-    import {data,apiFunc} from './data.js'
+    import {apiFunc} from './data.js'
     import {useRouter} from 'vue-router'
     const router = useRouter()
     function switchTo(path){
@@ -51,7 +51,7 @@
 </script>
 
 <template>
-    <Header title="View Orders"></Header>
+    <Header title="View Orders" icon="pi-eye"></Header>
 
     <div class="m-3">
         <div class="order-table color-base p-2 m-2 box-shadow round-border">

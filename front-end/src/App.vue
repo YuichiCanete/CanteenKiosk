@@ -1,15 +1,7 @@
 <script setup>
   
   import {apiFunc} from './pages/data.js'
-  import {useRouter} from 'vue-router'
-  const router = useRouter()
-  function switchTo(path){
-    router.push(path)
-  }
-
-  function logout(){
-    switchTo('/')
-  }
+  
 
   async function tryPost() {
     return await apiFunc.value.add('http://127.0.0.1:8000/api/users/',{
@@ -39,7 +31,6 @@
 <template>
   <div>
     <router-view></router-view>
-    <input type="button" value="Logout" class="logout-btn btn-uic" @click="logout()">
   </div>
 </template>
 
