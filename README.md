@@ -12,6 +12,7 @@
 ```
   cd front-end
   npm install primevue
+  npm install primeicons
 ```
 
 ### To Run
@@ -30,7 +31,7 @@ Import the canteen_kiosk.sql to phpmyadmin
   cd back-end
   conda create --name canteen_kiosk python=3.9
   conda activate canteen_kiosk
-  pip install fastapi uvicorn mysql-connector-python python-multipart
+  pip install fastapi uvicorn mysql-connector-python python-multipart cryptography bcrypt
 ```
 
 ### To Run
